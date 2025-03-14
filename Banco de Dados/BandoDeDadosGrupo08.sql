@@ -1,3 +1,4 @@
+CREATE DATABASE projeto;
 use projeto;
 
 /*
@@ -103,3 +104,10 @@ SELECT nomeFazenda AS 'Nome da Fazenda',
 			FROM plantacao;
             
 select * from cliente, dados, plantacao;
+
+
+ALTER TABLE cliente ADD COLUMN rg CHAR(9);
+UPDATE cliente SET rg = '26959551X' WHERE idCliente = 1;
+UPDATE cliente SET rg = '411843588' WHERE idCliente = 2;
+UPDATE cliente SET rg = '463045361' WHERE idCliente = 3;
+UPDATE cliente SET rg = '337371222' WHERE idCliente = 4;
