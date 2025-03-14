@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: rgb(121, 81, 55);">
+    <div style="text-align: center; background-color: #FFF; position:relative; width: 40%;border-radius: 50px; margin-left: auto; margin-right: auto; height: 700px;">
+        <br>
+    <h2> Simulador Finaceiro</h2>
+    <br><br>
+        <p>Insira a quantidade de hectares que você possui:</p>
+        <input type="text" id="input_hectare" placeholder="Digite aqui">
+        <br>
+
+        <p>Insira a quantidade de Cacau(kg) produzido na última safra:
+        </p>
+        <input type="text" id="input_cacau" placeholder="Digite aqui">
+        <br>
+
+        <p>Insira o espaçamento entre as plantas (3x3 ou 4x3):</p>
+        <input type="text" id="input_plantas" placeholder="Digite aqui">
+        <br>
+
+        <p>Insira o preço(R$) por kg de Cacau:</p>
+        <input type="text" id="input_preco" placeholder="Digite aqui">
+        <br>
+
+        <button onclick="calcular()">Calcular</button>
+
+
+        <div id="div_cacau"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var hectare = Number(input_hectare.value)
+        var cacauProduzido = Number(input_cacau.value)
+        var plantas = input_plantas.value
+        var preco = Number(input_preco.value)
+        var valPlantas = 0
+        var dinheiroKg = preco * cacauProduzido
+
+
+
+        if (plantas == '3x3') {
+            valPlantas = 1111
+            var totalPlantas = valPlantas * hectare
+            var kgTotal = totalPlantas * 0.4
+            var cacauPerdido = kgTotal - cacauProduzido
+            var percentualPerda = cacauPerdido / kgTotal * 100
+            var perdaEvitada = cacauPerdido * 0.3
+            var dinheiroEsperado = kgTotal * preco
+            var prejuizo = dinheiroEsperado - dinheiroKg
+
+            if(kgTotal<cacauProduzido){
+                div_cacau.innerHTML = `<br> <h3 style='color:red'>Quantidade de hectare ou Cacau oroduzido está incorreto<h3>` 
+            }
+
+            else{            div_cacau.innerHTML = `
+       <br><h3>Resultados:</h3>
+    Produção estimada: ${kgTotal} kg<br>
+    Produção real: ${cacauProduzido} kg <br>
+    Cacau perdido: ${cacauPerdido} kg<br>
+    Perda percentual: ${percentualPerda}%<br>
+    Perda evitada com a nossa aplicação: ${perdaEvitada} kg <br>
+    Faturamento esperado: R$${dinheiroEsperado} <br>
+    Faturamento feito: R$${dinheiroKg} <br>
+      Prejuízo: R$${prejuizo}
+                `;}
+
+        }
+
+
+
+        else if (plantas == '4x3') {
+            valPlantas = 833
+            var totalPlantas = valPlantas * hectare
+            var kgTotal = totalPlantas * 0.4
+            var cacauPerdido = kgTotal - cacauProduzido
+            var percentualPerda = cacauPerdido / kgTotal * 100
+            var perdaEvitada = cacauPerdido * 0.3
+            var dinheiroEsperado = kgTotal * preco
+            var prejuizo = dinheiroEsperado - dinheiroKg
+
+            if(kgTotal<cacauProduzido){
+                div_cacau.innerHTML = `<br> <h3 style='color:red'>Quantidade de hectare ou Cacau oroduzido está incorreto<h3>` 
+            }
+
+            else{            div_cacau.innerHTML = `
+     <br><h3>Resultados:</h3>
+    Produção estimada: ${kgTotal} kg<br>
+    Produção real: ${cacauProduzido} kg <br>
+    Cacau perdido: ${cacauPerdido} kg<br>
+    Perda percentual: ${percentualPerda}%<br>
+    Perda evitada com a nossa aplicação: ${perdaEvitada} kg <br>
+    Faturamento esperado: R$${dinheiroEsperado} <br>
+    Faturamento feito: R$${dinheiroKg} <br>
+      Prejuízo: R$${prejuizo}
+                `;}
+             
+          
+        }
+
+
+
+        else {
+
+            div_cacau.innerHTML = `<br> <h3 style='color:red'>Espaçamento listado incorretamente<h3>`
+
+        }
+
+
+    }
+
+</script>
