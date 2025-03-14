@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+        
+            text-align: center;
+        
+        }
+    </style>
+
+    TAMANHO DA ÁREA (HECTARES): <br>
+    <input type="text" id="i_area"> <br><br>
+
+    PREÇO DO CACAU POR KG (R$): <br>
+    <input type="text" id="i_preco"> <br><br>
+
+    GASTOS COM A PRODUÇÃO (R$): <br>
+    <input type="text" id="i_gastos"> <br><br>
+
+    CACAU PERDIDO POR HECTARE (KG): <br>
+    <input type="text" id="i_perdakg"> <br><br>
+
+    <button onclick="calcular()">CALCULAR SITUAÇÃO</button>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    function calcular() {
+        var area = Number(i_area.value);
+        var precokg = Number(i_preco.value);
+        var gastos = Number(i_gastos.value);
+        var perdaKg = Number(i_perdakg.value);
+
+        /* Cálculos sem o projeto */
+        var producaoEstimativa = area * 1000;
+        var perdaTotalSemProjeto = perdaKg * area;
+        var producaoTotalSemProjeto = producaoEstimativa - perdaTotalSemProjeto;
+        var receitaSemProjeto = producaoTotalSemProjeto * precokg;
+        var lucroSemProjeto = receitaSemProjeto - gastos;
+        var taxaPerdaSemProjeto = (perdaTotalSemProjeto / producaoEstimativa) * 100;
+
+        /* Cálculos com o projeto */
+        var perdaTotalComProjeto = perdaTotalSemProjeto * 0.7;;
+        var producaoTotalComProjeto = producaoEstimativa - perdaTotalComProjeto; 
+        var receitaComProjeto = producaoTotalComProjeto * precokg;
+        var lucroComProjeto = receitaComProjeto - gastos;
+        var taxaPerdaComProjeto = (perdaTotalComProjeto / producaoEstimativa) * 100;
+
+        /* Exibindo os resultaods */
+        div_mensagem.innerHTML = `
+            <h4 style ="color : red"><b>Sem o projeto:</b></h4> <br>
+            <a style = "color : red;">Produção estimada: ${producaoEstimativa} kg </a> <br>
+            <a style = "color : red;">Perda total: ${perdaTotalSemProjeto} kg </a> <br>
+            <a style = "color : red;">Produção total: ${producaoTotalSemProjeto} kg </a> <br> 
+            <a style = "color : red;">Receita: R$ ${receitaSemProjeto} </a> <br> 
+            <a style = "color : red;">Lucro: R$ ${lucroSemProjeto} </a> <br>
+            <a style = "color : red;">Taxa de perda: ${taxaPerdaSemProjeto}% </a> <br>
+
+            <h4 style = "color : green"><b>Com o projeto:</b></h4> <br>
+            <a style = "color : green;">Produção estimada: ${producaoEstimativa} kg.</a> <br>  
+            <a style = "color : green;">Perda total: ${perdaTotalComProjeto} kg.</a> <br>
+            <a style = "color : green;">Produção total: ${producaoTotalComProjeto} kg.</a> <br> 
+            <a style = "color : green;">Receita: R$ ${receitaComProjeto}.</a> <br>
+            <a style = "color : green;">Lucro: R$ ${lucroComProjeto}.</a> <br>
+            <a style = "color : green;">Taxa de perda: ${taxaPerdaComProjeto}%.</a> 
+        `
+
+
+    }
+</script>
