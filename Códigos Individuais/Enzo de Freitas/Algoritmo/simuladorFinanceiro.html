@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Simulador Financeiro</h3>
+    <h4>Safra total (kg)</h4>
+    <input type="text" id="input_safra" placeholder="13000kg">
+
+    <h4>Taxa de perda (kg)</h4>
+    <input type="text" id="input_perda" placeholder="43kg">
+
+    <h4>Preço de venda por kg</h4>
+    <input type="text" id="input_afetada" placeholder="R$6">
+
+    <h4>Custo das soluções</h4>
+    <input type="text" id="input_solucoes" placeholder="R$2400">
+
+    <br><br>
+    <button onclick="calcular()">Calcular</button>
+
+    <i><h3>Descrição</h3></i>
+    <div id="div_mensagem"></div>
+
+
+</body>
+</html>
+
+<script>
+
+    function calcular() {
+        var safra = Number(input_safra.value);
+        var perda = Number(input_perda.value);
+        var venda = Number(input_afetada.value);
+        var solucao = Number(input_solucoes.value);
+        var taxaPerda = safra - (safra - perda)
+        var prejuizo = taxaPerda * venda
+        var comparacao = solucao - prejuizo
+        
+        div_mensagem.innerHTML = ` <span style="color:blue">Com a taxa de perda em ${perda / safra * 100}% na 
+        safra total de ${safra}kg, obteve um prejuízo de R$${prejuizo}. </span>`
+
+        if (comparacao > 1) {
+            div_mensagem.innerHTML += `<br>
+            <span style="color:green"> Mediante o custo necessário de R$${solucao} para remediar esse problema,
+            será bem sucedida a ação com saldo de R$${comparacao} positivo. <span>
+        `
+        }
+        
+        if (comparacao == 0) {
+            div_mensagem.innerHTML += `<br>
+            Mediante o custo necessário de R$${solucao} para remediar esse problema, será bem sucedida a ação com saldo neutro de R$0
+            `
+        }
+
+        if (comparacao < 0) {
+            div_mensagem.innerHTML += `<br>
+            <span style="color:red">Mediante o custo necessário de R$${solucao} para remediar esse problema, será mal 
+            sucedida a ação; faltam R$${comparacao * -1}. </span>
+            `
+        }
+/*
+        div_mensagem.innerHTML = `
+        Com a taxa de perda em ${perda * safra / 100}% na safra total de ${safra}kg, obteve um prejuízo de R$${prejuizo} <br>
+        Mediante o custo necessário de R$${solucao} para remediar esse problema, terá o total de  
+        `
+*/
+    }
+
+</script>
