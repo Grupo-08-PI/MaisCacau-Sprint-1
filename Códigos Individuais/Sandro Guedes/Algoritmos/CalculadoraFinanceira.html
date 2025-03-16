@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Calculadora Financeira para Produtores de Cacau</h2>
+
+        Renda Mensal (Venda de Cacau):<br>
+        <input type="text" id="input_renda"><br>
+
+        Gastos Mensais (Insumos, Mão de Obra, etc.):<br>
+        <input type="text" id="input_gastos"><br>
+
+        Área Cultivada (hectares):<br>
+        <input type="text" id="input_area"><br>
+
+        Produção Mensal (kg de Cacau):<br>
+        <input type="text" id="input_producao"><br>
+
+        <button onclick="calcularFinanceiro();">Calcular</button>
+
+        <div id="msg"></div>
+
+    
+</body>
+</html>
+<script>
+    function calcularFinanceiro() {
+            var renda = Number(input_renda.value);
+            var gastos = Number(input_gastos.value);
+            var area = Number(input_area.value);
+            var producao = Number(input_producao.value);
+            var saldo = renda - gastos;
+            var produtividade;
+            var sensoresMax = 5;
+            var sensoresMin = 3;
+            var maxSensores = area * sensoresMax;
+            var minSensores = area * sensoresMin;
+
+            if (area > 0) {
+                produtividade = (producao / area).toFixed(2);
+                msg.innerHTML=`Para ${area} hectare(s), você precisará de entre ${minSensores} e ${maxSensores} sensores.`;
+            } else {
+                produtividade = 0;
+            }
+            
+            if (saldo == 0) {
+                msg.innerHTML = `Cuidado! Você está zerado.`;
+            } else if (saldo > 0) {
+                msg.innerHTML = `Saldo positivo: R$ ${saldo} <br> Produtividade: ${produtividade} kg/hectare<br>
+            Para ${area} hectare(s), você precisará de entre ${minSensores} e ${maxSensores} sensores.`;
+            } else {
+                msg.innerHTML = `Atenção! Você está no vermelho! Saldo: R$ ${saldo} <br> Produtividade: ${produtividade} kg/hectare`;
+            }
+          
+        }
+
+</script>
