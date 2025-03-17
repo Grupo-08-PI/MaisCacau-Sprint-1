@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulador Financeiro</title>
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+    background-color: #e3f2fd; 
+    font-family: Arial, sans-serif; 
+}
+.container {
+    padding: 20px; 
+    border: 1px solid #c5c5c5; 
+    border-radius: 10px; 
+    background-color: #ffffff; 
+    box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 320px;
+}
+h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+p {
+    margin-bottom: 25px; 
+    color: #555;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    width: calc(100% - 20px);
+    margin: 16px 0;
+    margin-top: 12px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    font-size: 16px;
+}
+input:focus {
+    border: 1px solid #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    outline: none;
+}
+button {
+    margin-top: 25px;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+}
+button:hover {
+    background-color: #218838; 
+    transform: scale(1.05);
+}
+</style>
+<body>
+    <div id="container">
+
+        <h2>Simulador Financeiro - Cacau</h2><br>
+        
+        <div id="inputs">
+            <label>Produção mensal de cacau  (Em kg)</label>
+            <input type="text" id="input_producao" placeholder="Digite a quantidade produzida em kg"><br>
+            
+            <label>Preço de venda do cacau (Por kg)</label>
+            <input type="text" id="input_precoVenda" placeholder="Digite o preço do Kg do cacau em reais"><br>
+            
+            <label>Período analisado (Em meses)</label>
+            <input type="text" id="input_periodo" placeholder="Digite a quantidade de meses que gostaria de analisar">
+
+        </div>
+        
+        <button onclick="calcular()">Calcular Lucro</button><br>
+        <br><br>
+        <div id="res"></div><br>
+    </div>
+
+</body>
+</html>
+<script>
+    function calcular(){
+        var producao = Number(input_producao.value);
+        var precoVenda = Number(input_precoVenda.value);
+        var periodo = Number(input_periodo.value);
+        var producaoTotal = producao * periodo;
+        var producaoPotencial = producaoTotal * 1.3;
+        var lucroReal = producaoTotal * precoVenda;
+        var lucroPotencial = producaoPotencial * precoVenda;
+        var ganhoPerdido = lucroPotencial - lucroReal;
+        
+        res.innerHTML =`
+    <p>Em ${periodo} meses, você colheu <strong>${producaoTotal} Kg</strong>.</p>
+    <p>Se não houvesse perdas por pragas e pestes, poderia ter colhido <strong>${producaoPotencial} Kg</strong>.</p>
+    <p>O lucro real foi <strong>R$ ${lucroReal}</strong>, 
+    mas com nosso sistema você poderia ter ganhado <strong>R$ ${lucroPotencial}</strong>.</p>
+    <p style="color: red;"><strong>Você deixou de ganhar R$ ${ganhoPerdido}</strong> devido às perdas na produção.</p>
+    `;
+        
+    }
+</script>
+
