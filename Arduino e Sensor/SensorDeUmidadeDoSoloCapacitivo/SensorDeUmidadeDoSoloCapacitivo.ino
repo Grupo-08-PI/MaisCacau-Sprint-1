@@ -9,23 +9,25 @@ void setup() { // Determina a iniciação do programa de a configuração dos pi
 
 void loop() { // Repetição do código
   int leituraSensor = analogRead(PINO_SENSOR_UMIDADE_SOLO); // Atribuição da variável leituraSensor com o valor recebido do analógico
-
-  float porcentagemUmidade = (leituraSensor / 1023.0) * 100; // Calculo para conversão da porcentagem
-
+ // Invertendo as métricas do sensor para captar a porcentagem de Umidade
+  float umidade = map(leituraSensor, 0, 1023, 100, 0);
   // Exibição de mensagem "Umidade do Solo:"
   
-  
-  Serial.print("SecuraMaxima:"); // Label de Secura Máxima
+  // Umidade Máxima
+  Serial.print("UmidadeMáxima:"); // Label de Secura Máxima
   Serial.print(40); // Valor da Secura Máxima
   Serial.print(" "); // Intervalo para inserção de outro valor
-  Serial.print("Secura:"); // Label de valor da Secura
-  Serial.print(porcentagemUmidade - 20); // Valor medido pelo sensor - 20 para se adequar as condições do projeto
+  
+  // Umidade
+  Serial.print("Umidade:"); // Label de valor da Secura
+  Serial.print(umidade - 20); // Valor medido pelo sensor - 20 para se adequar as condições do projeto
   Serial.print(" "); // Intervalo para inserção de outro valor
-  Serial.print("SecuraMinima:"); // Label para Secura Mínima
+
+  // Umidade Mínima
+  Serial.print("UmidadeMínima:"); // Label para Secura Mínima
   Serial.println(20); // Valor da Secura Mínima
   
   
 
-  delay(1000); // Tempo para executar o código novamente
+  delay(50); // Tempo para executar o código novamente
 }
-
