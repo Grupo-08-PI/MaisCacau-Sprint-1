@@ -120,28 +120,31 @@ SELECT nomeFazenda AS 'Nome da Fazenda',
 			FROM plantacao;
             
     
-    create table cliente(
-idCliente int primary key auto_increment, 
-cpf char(11) unique not null,
-cnpj char(14) unique,
-nome varchar(100) not null,
-email varchar(80) unique not null,
-senha varchar(15) not null,
-telefone char(11),
-cidade varchar(60),
-estadoUf char(2)
-);
 	
     -- SELECT EXEMPLO Cliente:
-SELECT cpf, cnpj, nome, email, senha ,telefone, cidade, estadoUf,rg FROM cliente WHERE idCliente=3;
+SELECT cpf AS 'CPF',
+	ifnull(cnpj, 'Não informado') AS 'CNPJ',
+    nome AS 'Nome',
+    email AS 'Email',
+    senha AS 'Senha',
+    telefone AS 'Telefone',
+    cidade AS 'Cidade',
+    estadoUf AS 'Estado',
+    ifnull(rg, 'Não informado') as 'Rg' FROM cliente WHERE idCliente=3;
 
 
 -- SELECT EXEMPLO Dados:
-SELECT * FROM dados WHERE situacao ='Necessita reparo';
+SELECT  idDados AS 'ID',
+		nomeSensor AS 'Nome do Sensor',
+		funcaoSensor AS 'Função do Sensor',
+        ifnull(dadoUmidade, 'Sem monitoramento') AS 'Dados Monitorados',
+        monitoramento AS 'Monitoramento',
+        situacao AS 'Situação do Sensor' FROM dados WHERE situacao ='Necessita reparo';
 
             
 -- SELECT EXEMPLO Plantação:
-SELECT nomeFazenda,dtPlantio FROM plantacao;	
+SELECT nomeFazenda AS 'Nome da Fazenda', 
+  dtPlantio AS 'Data do Plantio' FROM plantacao;	
 
             
 		
