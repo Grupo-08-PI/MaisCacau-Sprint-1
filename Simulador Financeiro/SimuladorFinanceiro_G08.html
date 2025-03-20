@@ -19,16 +19,16 @@
         <h1>Calculadora Financeira</h1>
 
         <h4>Quantidade de hectares da fazenda</h4>
-        <input type="text" id="input_hectares">
+        <input type="text" id="input_hectares" placeholder="Hectares">
 
         <h4>Produção da colheita de cacau (Em Kg)</h4>
-        <input type="text" id="input_producaoColheita">
+        <input type="text" id="input_producaoColheita" placeholder="Kg">
 
         <h4>Valor total de custo da produção</h4>
-        <input type="text" id="input_custoProducao">
+        <input type="text" id="input_custoProducao" placeholder="R$">
 
         <h4>Preço do cacau vendido (Por Kg)</h4>
-        <input type="text" id="input_precoKg">
+        <input type="text" id="input_precoKg" placeholder="R$">
 
         <br><br>
 
@@ -76,6 +76,7 @@
 
         if (hectares <= 75) {
             div_mensagem.innerHTML = `
+            <br><br>
             <p style="color:red; font-weight: bold;"><u>Sem o projeto:</u></p>
         
             <p>A sua colheita de <strong>${hectares}</strong> hectares rendeu <strong>${producao} Kg </strong>e cada Kg foi vendido por <strong>R$${preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>, totalizando <strong>R$${rendaBruta.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
@@ -88,11 +89,11 @@
         
             <p style="color:green; font-weight: bold;"><u>Com o projeto:</u></p>
         
-            <p>A produção de <strong>${producao} Kg</strong> teve um aumento de <strong>30%</strong>, totalizando <strong>${producao * 1.3} Kg</strong>.</p>
+            <p>A produção que era <strong>${producao} Kg</strong> teve um aumento de <strong>30%</strong>, totalizando <strong>${producao * 1.3} Kg</strong>.</p>
             <br>
-            <p>O custo da produção de <strong>R$${custo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> teve uma redução de <strong>25%</strong>, totalizando <strong>R$${(custo * 0.75).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
+            <p>O custo da produção que era <strong>R$${custo.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> teve uma redução de <strong>25%</strong>, totalizando <strong>R$${(custo * 0.75).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
             <br>
-            <p>A renda líquida de <strong>R$${rendaLiquida.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi para <strong>R$${rendaLiquidaProjeto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>, aumentando <strong>R$${(rendaLiquidaProjeto - rendaLiquida).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
+            <p>A renda líquida que era <strong>R$${rendaLiquida.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong> foi para <strong>R$${rendaLiquidaProjeto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>, aumentando <strong>R$${(rendaLiquidaProjeto - rendaLiquida).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
             <br>
             <p>Antes cada Hectare rendia <strong>R$${rendaHectareLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>, com o aumento de <strong>30%</strong> da produção e o decréscimo de <strong>25%</strong> do custo de produção, foi para <strong>R$${rendaHectareProjeto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>, tendo a diferença de <strong>R$${(rendaHectareProjeto - rendaHectareLiquido).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>.</p>
             <br>
@@ -112,24 +113,24 @@
         // Medindo a produtividade da fazenda do Usuário com base nos dados coletados na documentação
         if (producaoPorHectare < 300) {
             div_mensagem.innerHTML += `<br>
-            <p style="color: #800000; font-weight: bold;">Produtividade muito baixa na plantação!</p>
+            <p style="font-weight: bold;">Produtividade muito baixa na plantação!</p>
             `
         }
         else if (producaoPorHectare >= 300 && producaoPorHectare <= 500) {
             div_mensagem.innerHTML += `<br>
-            <p style="color: #FF0000; font-weight: bold;">Baixa produtividade da plantação!</p>
+            <p style="font-weight: bold;">Baixa produtividade da plantação!</p>
             `
         } else if (producaoPorHectare > 500 && producaoPorHectare <= 1200) {
             div_mensagem.innerHTML += `<br>
-            <p style="color: #FFFF00; font-weight: bold;">Média produtividade da plantação!</p>
+            <p style="font-weight: bold;">Média produtividade da plantação!</p>
             `
         } else if (producaoPorHectare > 1200 && producaoPorHectare <= 2500) {
             div_mensagem.innerHTML += `<br>
-            <p style="color: green; font-weight: bold;">Alta produtividade da plantação!
+            <p style="font-weight: bold;">Alta produtividade da plantação!
             `
         } else if (producaoPorHectare > 2500) {
             div_mensagem.innerHTML += `<br>
-            <p style=" color: #05ff00;font-weight: bold;">Altíssima produtividade da plantação!
+            <p style="font-weight: bold;">Altíssima produtividade da plantação!
             `
         }
     }
