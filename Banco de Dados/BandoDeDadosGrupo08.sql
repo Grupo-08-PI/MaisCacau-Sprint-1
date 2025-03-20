@@ -84,6 +84,8 @@ SELECT nomeSensor AS 'Nome do Sensor',
 
 
 
+
+
 -- Criação da tabela das plantações
 create table plantacao(
 idPlant int primary key auto_increment,
@@ -95,7 +97,7 @@ tipoCacau varchar(50) not null,
 constraint chkTipoCacau check(tipoCacau in('Criollo','Forasteiro','Trinitário')),
 tipoClima varchar(50) not null,
 dtPlantio date not null,
-dtColheita date not null,
+dtColheita date,
 cidadePlant varchar(50) not null,
 tipoAdubo varchar(50) not null
 );
@@ -116,3 +118,30 @@ SELECT nomeFazenda AS 'Nome da Fazenda',
     cidadePlant AS 'Localização',
     tipoAdubo AS 'Tipo de Adubo' 
 			FROM plantacao;
+            
+    
+    create table cliente(
+idCliente int primary key auto_increment, 
+cpf char(11) unique not null,
+cnpj char(14) unique,
+nome varchar(100) not null,
+email varchar(80) unique not null,
+senha varchar(15) not null,
+telefone char(11),
+cidade varchar(60),
+estadoUf char(2)
+);
+	
+    -- SELECT EXEMPLO Cliente:
+SELECT cpf, cnpj, nome, email, senha ,telefone, cidade, estadoUf,rg FROM cliente WHERE idCliente=3;
+
+
+-- SELECT EXEMPLO Dados:
+SELECT * FROM dados WHERE situacao ='Necessita reparo';
+
+            
+-- SELECT EXEMPLO Plantação:
+SELECT nomeFazenda,dtPlantio FROM plantacao;	
+
+            
+		
